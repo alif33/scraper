@@ -5,15 +5,10 @@ const { dataScrap } = require('./helpers/puppeteer')
 
 app.get('/',  async(req, res)=>{
 
-  const sellers = []
   await dataScrap("laravel").then(seller=>{
-      seller.push(seller)
+      res.json(seller)
   })
-  await dataScrap("react").then(seller=>{
-      seller.push(seller)
-  })
- 
-  await res.json(sellers)
+
 })
 
 const PORT = 3000
