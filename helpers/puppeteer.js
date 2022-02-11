@@ -4,7 +4,12 @@ const slugify = require('slugify')
 exports.dataScrap = async( keyword )=>{
 
     const url = `https://www.fiverr.com/search/gigs?query=${slugify(keyword, '%20')}&source=top-bar&search_in=everywhere&search-autocomplete-original-term=${slugify(keyword, '%20')}`
-    const browser = await puppeteer.launch({headless : false});
+    const browser = await puppeteer.launch({
+        'args' : [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ],
+        headless : false});
     const page = await browser.newPage();
 
     await page.goto(url,{ waitUntil: "domcontentloaded" });
